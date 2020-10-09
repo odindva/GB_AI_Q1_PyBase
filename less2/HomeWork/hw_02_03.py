@@ -5,14 +5,22 @@
 
 months = {'Зима': [1, 2, 12], 'Весна': [3, 4, 5], 'Лето': [6, 7, 8], 'Осень': [9, 10, 11]}
 
+# while True:
+#     try:
+#         month = int(input('Введите номер месяца: '))
+#         if month < 1 or month > 12:
+#             raise ValueError
+#         break
+#     except ValueError:
+#         print('Вы ввели не номер месяца')
+
 while True:
-    try:
-        month = int(input('Введите номер месяца: '))
-        if month < 1 or month > 12:
-            raise ValueError
-        break
-    except ValueError:
-        print('Вы ввели не номер месяца')
+    month = input('Введите номер месяца: ')
+    if month.isdigit():
+        month = int(month)
+        if 1 <= int(month) <= 12:
+            break
+    print('Вы ввели не номер месяца (1 - 12)')
 
 for key, val in months.items():
     if month in val:

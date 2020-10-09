@@ -12,12 +12,19 @@
 my_list = [7, 5, 3, 3, 2]
 print(my_list)
 n = 0
+# while True:
+#     try:
+#         n = int(input('Введите число: '))
+#         break
+#     except ValueError:
+#         print('Вы ввели не число')
+
 while True:
-    try:
-        n = int(input('Введите число: '))
+    n = input('Введите число: ')
+    if n.isdigit():
+        n = int(n)
         break
-    except ValueError:
-        print('Вы ввели не число')
+    print('Некорректный ввод')
 
 not_added = True
 for i in range(len(my_list)):
