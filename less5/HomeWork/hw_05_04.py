@@ -20,7 +20,7 @@ except IOError:
     print('Ошибка ввод-вывода')
 
 try:
-    with open(file_name_out, 'w') as f:
+    with open(file_name_out, 'w', encoding='utf-8') as f:
         for line in lines:
             figure = figures[line.split()[0].lower()].title()
             f.write(figure + line[len(line.split()[0]):])

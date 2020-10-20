@@ -4,7 +4,7 @@
 
 file_name = 'file_1.txt'
 try:
-    with open(file_name, 'w') as f:
+    with open(file_name, 'w', encoding='utf-8') as f:
         while True:
             s = input(f'Введите строку для добавления в файл {file_name} или Enter для выхода: ')
             if not s:

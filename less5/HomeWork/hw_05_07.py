@@ -43,6 +43,11 @@ if average_profit:
 
 try:
     with open(file_name_out, 'w') as f:
-        json.dump(d, f)
+        json.dump(d, f, indent=4)
 except IOError:
     print('Ошибка ввод-вывода')
+
+# with open(file_name_out, encoding='utf-8') as f:
+#     new_d = json.load(f)
+#     print(new_d)
+#     print(type(new_d))
