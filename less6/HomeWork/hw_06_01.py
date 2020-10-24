@@ -8,15 +8,15 @@
 # Задачу можно усложнить, реализовав проверку порядка режимов,
 # и при его нарушении выводить соответствующее сообщение и завершать скрипт.
 from random import choice
-from tkinter import Tk, Canvas
 import threading
+from tkinter import Tk, Canvas
 from itertools import cycle
 from time import sleep
 
 
 class TrafficLight:
     __colors = ('red', 'yellow_r_g', 'green', 'yellow_g_r')
-    __seconds = (3, 2, 3, 2)
+    __seconds = (7, 2, 7, 2)
     __count_tl = 1
 
     def __init__(self, color=None, diam=200):
@@ -80,7 +80,7 @@ class TrafficLight:
                 break
 
             # Задержка во времени
-            sleep(TrafficLight.__seconds[TrafficLight.__colors.index(self.__color)])
+            sleep(TrafficLight.__seconds[TrafficLight.__colors.index(self.__color) - 1])
             self.show_tl()
 
             # По умолчанию есть ограничение цикла
@@ -88,11 +88,12 @@ class TrafficLight:
                 counts -= 1
 
 
-tl_1 = TrafficLight()
-tl_2 = TrafficLight('green')
-threading.Thread(target=tl_1.running()).start()
-threading.Thread(target=tl_2.running()).start()
+if __name__ == '__main__':
+    tl_1 = TrafficLight()
+    # tl_2 = TrafficLight('green')
+    threading.Thread(target=tl_1.running()).start()
+    # threading.Thread(target=tl_2.running()).start()
 
-# бесконечный вариант:
-# tl_3 = TrafficLight('yellow')
-# tl_3.running(no_limit=False)
+    # бесконечный вариант:
+    # tl_3 = TrafficLight('yellow')
+    # tl_3.running(no_limit=False)

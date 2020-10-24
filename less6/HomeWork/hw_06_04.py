@@ -8,9 +8,12 @@
 # При значении скорости свыше 60 (TownCar) и 40 (WorkCar) должно выводиться сообщение о превышении скорости.
 # Создайте экземпляры классов, передайте значения атрибутов.
 # Выполните доступ к атрибутам, выведите результат. Выполните вызов методов и также покажите результат.
+from random import choice
 
 
 class Car:
+    turns = ('to the left', 'to the right')
+
     def __init__(self, name, speed, color, is_police):
         self.speed = speed
         self.color = color
@@ -23,8 +26,8 @@ class Car:
     def stop(self):
         print(f'{self.name} stop')
 
-    def turn(self, direction):
-        print(f'{self.name} turn on {direction}')
+    def turn(self, direction=None):
+        print(f'{self.name} turn {direction if direction else choice(Car.turns)}')
 
     def show_speed(self):
         print(f"{self.name}'s speed - {self.speed}")
@@ -33,9 +36,9 @@ class Car:
 class TownCar(Car):
     def show_speed(self):
         restriction = 60
-        print(f"{self.name}'s speed - {self.speed}")
+        print(f"{self.name}'s speed - {self.speed}", end=', but ')
         if int(self.speed) > restriction:
-            print(f"{self.name} exceeded speed by {int(self.speed) - restriction}")
+            print(f"exceeded speed by {int(self.speed) - restriction}")
 
 
 class SportCar(Car):
@@ -45,22 +48,23 @@ class SportCar(Car):
 class WorkCar(Car):
     def show_speed(self):
         restriction = 40
-        print(f"{self.name}'s speed - {self.speed}")
+        print(f"{self.name}'s speed - {self.speed}", end=', but ')
         if int(self.speed) > restriction:
-            print(f"{self.name} exceeded speed by {int(self.speed) - restriction}")
+            print(f"exceeded speed by {int(self.speed) - restriction}")
 
 
 class PoliceCar(Car):
     pass
 
 
-town_car = TownCar('1', 65, 'red', False)
+town_car = TownCar('mazda', 65, 'red', False)
 town_car.go()
-town_car.turn(90)
+town_car.turn()
 town_car.show_speed()
 town_car.stop()
-sportCar = SportCar('2', 165, 'blue', False)
+print()
+sportCar = SportCar('lada', 165, 'blue', False)
 sportCar.go()
-sportCar.turn(90)
+sportCar.turn()
 sportCar.show_speed()
 sportCar.stop()

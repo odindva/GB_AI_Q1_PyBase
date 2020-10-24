@@ -28,12 +28,7 @@ class Road:
         по умолчанию 25
         :return: масса асфальта в тоннах
         """
-        try:
-            out = int(self._length * self._width * mass_one * thickness / (1 if in_kg else 1000))
-            return out
-        except TypeError as e:
-            print(e)
-            return None
+        return int(self._length * self._width * mass_one * thickness / (1 if in_kg else 1000))
 
 
 road = Road(5000, 20)

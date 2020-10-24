@@ -12,22 +12,22 @@ class Stationery:
         self.title = title
 
     def draw(self):
-        print(f'{self.title}. drawing')
+        print(f'{self.title}, drawing')
 
 
 class Pen(Stationery):
     def draw(self):
-        print(f'{self.title}. Pen drawing')
+        print(f'{self.title}, pen drawing')
 
 
 class Pencil(Stationery):
     def draw(self):
-        print(f'{self.title}. Pencil drawing')
+        print(f'{self.title}, pencil drawing')
 
 
 class Handle(Stationery):
     def draw(self):
-        print(f'{self.title}. Handle drawing')
+        print(f'{self.title}, handle drawing')
 
 
 st = Stationery('one')
