@@ -10,27 +10,30 @@
 
 
 class Worker:
-    def __init__(self, name, surname, position, income=None):
-        if income is None:
-            income = {"wage": 11421, "bonus": 20000}
+    def __init__(self, name, surname, position):
         self.name = name
         self.surname = surname
         self.position = position
-        self.__income = income
+        self._income = {"wage": 1000, "bonus": 0}
 
 
 class Position(Worker):
+    def __init__(self, name, surname, position, wage=11421, bonus=200):
+        super().__init__(name, surname, position)
+        self._income['wage'] = wage
+        self._income['bonus'] = bonus
+
     def get_full_name(self):
-        print(f'ФИО работника: {self.name} {self.surname}\nДолжность: {self.position}')
+        print(f'Имя работника: {self.name} {self.surname}\nДолжность: {self.position}')
 
     def get_total_income(self):
-        print(sum(self._Worker__income.values()))
+        print(sum(self._income.values()))
 
 
 p_1 = Position('a', 'b', 'c')
 p_1.get_full_name()
 p_1.get_total_income()
 
-p_2 = Position('a', 'b', 'c', {"wage": 50000, "bonus": 50000})
+p_2 = Position('e', 'f', 'g', wage=30000, bonus=100000)
 p_2.get_full_name()
 p_2.get_total_income()
