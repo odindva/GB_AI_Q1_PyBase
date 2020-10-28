@@ -18,6 +18,7 @@ class Clothes(ABC):
 class Coat(Clothes):
     def __init__(self, size):
         self.size = size
+        self.__fabric = self.consumption()
 
     @property
     def size(self):
@@ -25,15 +26,24 @@ class Coat(Clothes):
 
     @size.setter
     def size(self, value):
-        self.__size = value
+        if value < 40:
+            self.__size = 40
+        elif value > 58:
+            self.__size = 58
+        else:
+            self.__size = value
 
     def consumption(self):
-        return self.__size / 6.5 + 0.5
+        return round(self.__size / 6.5 + 0.5, 2)
+
+    def __str__(self):
+        return f'Для размера {self.__size} нужно {self.__fabric} ткани на пальто'
 
 
 class Suit(Clothes):
     def __init__(self, length):
         self.length = length
+        self.__fabric = self.consumption()
 
     @property
     def length(self):
@@ -41,14 +51,30 @@ class Suit(Clothes):
 
     @length.setter
     def length(self, value):
-        self.__length = value
+        if value < 100:
+            self.__length = 100
+        elif value > 240:
+            self.__length = 240
+        else:
+            self.__length = value
 
     def consumption(self):
-        return self.__length * 2 + 0.3
+        return round(self.__length * 2 + 0.3, 2)
+
+    def __str__(self):
+        return f'Для роста {self.__length} нужно {self.__fabric} ткани на костюм'
 
 
 if __name__ == '__main__':
     coat_1 = Coat(12)
-    suit_1 = Suit(123)
-    print(coat_1.consumption())
-    print(suit_1.consumption())
+    suit_1 = Suit(23)
+    print(coat_1)
+    print(suit_1)
+    coat_2 = Coat(123)
+    suit_2 = Suit(253)
+    print(coat_2)
+    print(suit_2)
+    coat_3 = Coat(45)
+    suit_3 = Suit(157)
+    print(coat_3)
+    print(suit_3)

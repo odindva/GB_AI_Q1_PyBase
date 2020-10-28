@@ -48,6 +48,9 @@ class Cell:
     def __truediv__(self, other):
         return Cell(round(self.cells / other.cells))
 
+    def __floordiv__(self, other):
+        return Cell(self.cells // other.cells)
+
     def make_order(self, cells_in_row):
         s = ''
         k = 0
@@ -68,4 +71,4 @@ if __name__ == '__main__':
     print(a + b)
     print(a - b)
     print(a * b)
-    print(a / b)
+    print(a // b)
