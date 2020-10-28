@@ -13,6 +13,8 @@ from copy import deepcopy
 
 
 class Matrix:
+    loyal_regime = True
+
     def __init__(self, matrix, is_original=True):
         self.matrix = matrix
         self.rows = len(matrix)
@@ -46,8 +48,14 @@ class Matrix:
 
     def __add__(self, other):
         print('add', end='-')
-        result = self.normal(max(self.rows, other.rows), max(self.cols, other.cols))
-        other = other.normal(max(self.rows, other.rows), max(self.cols, other.cols))
+        if Matrix.loyal_regime:
+            result = self.normal(max(self.rows, other.rows), max(self.cols, other.cols))
+            other = other.normal(max(self.rows, other.rows), max(self.cols, other.cols))
+        else:
+            if self.rows != other.rows or self.cols != other.cols:
+                print('Error')
+                return None
+            result = self.copy()
         for i in range(len(result.matrix)):
             for j in range(len(result.matrix[0])):
                 result.matrix[i][j] += other.matrix[i][j]
@@ -55,8 +63,14 @@ class Matrix:
 
     def __sub__(self, other):
         print('sub', end='-')
-        result = self.normal(max(self.rows, other.rows), max(self.cols, other.cols))
-        other = other.normal(max(self.rows, other.rows), max(self.cols, other.cols))
+        if Matrix.loyal_regime:
+            result = self.normal(max(self.rows, other.rows), max(self.cols, other.cols))
+            other = other.normal(max(self.rows, other.rows), max(self.cols, other.cols))
+        else:
+            if self.rows != other.rows or self.cols != other.cols:
+                print('Error')
+                return None
+            result = self.copy()
         for i in range(len(result.matrix)):
             for j in range(len(result.matrix[0])):
                 result.matrix[i][j] -= other.matrix[i][j]
@@ -96,3 +110,12 @@ if __name__ == '__main__':
     print(b)
     print(a * b)
     print(b * a)
+
+    print('non loyal regime:')
+    print()
+    Matrix.loyal_regime = False
+    a = Matrix([[1, 2, 7], [3, 4], [5, '6']])
+    b = Matrix([[1, 2], [3, 4]])
+    print(a)
+    print(b)
+    print(a + b)
